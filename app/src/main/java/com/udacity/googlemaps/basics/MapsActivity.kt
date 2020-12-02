@@ -10,10 +10,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.BitmapDescriptorFactory
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.*
 import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -45,10 +42,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val latitude = 37.422160
         val longitude = -122.084270
         val zoomLevel = 15f
+        val overlaySize = 100f
 
         val homeLatLng = LatLng(latitude, longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
         map.addMarker(MarkerOptions().position(homeLatLng))
+
+        val googleOverlay = GroundOverlayOptions()
+                .image(BitmapDescriptorFactory.fromResource(R.drawable.beer))
+                .position(homeLatLng, overlaySize)
+        map.addGroundOverlay(googleOverlay)
 
         setMapLongClick(map)
         setPoiClick(map)
