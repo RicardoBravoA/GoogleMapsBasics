@@ -52,6 +52,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val homeLatLng = LatLng(latitude, longitude)
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
         map.addMarker(MarkerOptions().position(homeLatLng))
+        map.uiSettings.isZoomControlsEnabled = true
 
         val googleOverlay = GroundOverlayOptions()
                 .image(BitmapDescriptorFactory.fromResource(R.drawable.beer))
